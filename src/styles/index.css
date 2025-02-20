@@ -1,0 +1,42 @@
+@import './tailwind.css';
+
+@font-face {
+  font-family: 'YanoneKaffeesatz';
+  src: url('/fonts/YanoneKaffeesatz-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+}
+
+
+:root {
+  /* variables for tw and tw ui.shadcn */
+
+  --primary-color: #00d1cd;
+  --text-color: #FFFFFFDE;
+  --main-background-color: #212020;
+  /* дописать переменные */
+
+  font-family: 'YanoneKaffeesatz';
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--main-background-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+#root {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+body {
+  margin: 0;
+}
