@@ -10,10 +10,19 @@
 :root {
   /* variables for tw and tw ui.shadcn */
 
-  --primary-color: #00d1cd;
   --text-color: #FFFFFFDE;
   --main-background-color: #212020;
   /* дописать переменные */
+  --radius: 0.5rem;
+  --background: 0, 2%, 13%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --border: 240 3.7% 45.9%;
+  --borderFocus: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --primary-color: hsl(178, 100%, 41%);
 
   font-family: 'YanoneKaffeesatz';
   line-height: 1.5;
@@ -31,7 +40,7 @@
 
 #root {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
   text-align: center;
   width: 100vw;
   height: 100vh;

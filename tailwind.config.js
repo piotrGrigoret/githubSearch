@@ -23,13 +23,18 @@ export default {
 			'container-lg': '1100px',
 			'container-xl': '1920px',
 		  },
+		  width: {
+			'112': '28rem', 
+			'128': '32rem', 
+			'144': '36rem', 
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
-  			background: 'var(--main-background-color)',
+  			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
@@ -41,7 +46,7 @@ export default {
   			},
   			primary: {
   				DEFAULT: 'var(--primary-color)',
-  				foreground: 'var(--primary-color)'
+  				foreground: 'hsl(var(--primary-color))'
   			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
@@ -60,6 +65,7 @@ export default {
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
   			border: 'hsl(var(--border))',
+  			borderFocus: 'hsl(var(--borderFocus))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			chart: {
