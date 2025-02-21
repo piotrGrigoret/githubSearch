@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import repositories from './slices/repositoriesSlice';
+import { githubApi } from './api';
+import github from './slices/githubSlice';
 export const store = configureStore({
-    reducer:{
-        repositories
-    }
+    reducer: {
+        github,
+        [githubApi.reducerPath]: githubApi.reducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(githubApi.middleware),
+    
 })
 
 

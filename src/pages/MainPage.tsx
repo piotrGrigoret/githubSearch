@@ -1,23 +1,20 @@
-import { exampleMethod } from '@/redux/slices/repositoriesSlice';
-import { useDispatch } from 'react-redux';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
+// import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { RepoList } from '@/components/RepoList';
+// import { SearchForm } from '@/components/SearchForm';
+// import { useState } from 'react';
+import {  useSelector } from 'react-redux';
+import { selectGithub } from '@/redux/slices/githubSlice';
 export const MainPage = () => {
-    const dispath = useDispatch();
-    const tryRedux = () =>{
-        dispath(exampleMethod());
-    }
+    const {username} = useSelector(selectGithub)
+    // const [username, setUsername] = useState('');
+    
     return (
         <div 
             className='container h-full grid place-items-center mx-auto xl:max-w-container-xl' 
-            onClick={tryRedux}
         >
-            <DotLottieReact
-                className='animation max-w-64 mx-auto'
-                src='/lottie/loadGitHub.lottie'
-                loop
-                autoplay
-            />        
+            
+            {/* <SearchForm /> */}
+            <RepoList username={username} />
         </div>
     )
 }
