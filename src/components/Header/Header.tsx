@@ -1,12 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const Header = () => {
   return (
-    <div><img 
-    className="w-80 mx-auto" 
-    src="/assets/svg/github-high-resolution-logo-transparent.svg" 
-    alt="" 
-  />
-  </div>
+    <Link to={'/'}>
+      <div>
+        <img 
+          className="w-48 mx-auto md:w-80" 
+          src="/assets/svg/github-high-resolution-logo-transparent.svg" 
+          alt="" 
+        />
+      </div>
+    </Link>
   )
 }

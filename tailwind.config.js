@@ -7,6 +7,22 @@ export default {
   ],
   theme: {
   	extend: {
+		container: {
+			center: true,
+		  },
+		  screens: {
+			sm: '640px',
+			md: '768px',
+			lg: '1024px',
+			xl: '1280px',
+			'2xl': '1440px', 
+		  },
+		  maxWidth: {
+			'container-sm': '600px',
+			'container-md': '800px',
+			'container-lg': '1100px',
+			'container-xl': '1920px',
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

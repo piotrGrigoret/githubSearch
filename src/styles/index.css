@@ -30,13 +30,15 @@
 
 
 #root {
-  max-width: 1920px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 
 body {
   margin: 0;
+  
 }
