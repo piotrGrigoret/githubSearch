@@ -5,9 +5,7 @@ import { RepoList } from '@/components/RepoList';
 import {  useSelector } from 'react-redux';
 import { selectGithub } from '@/redux/slices/githubSlice';
 export const MainPage = () => {
-    const {username} = useSelector(selectGithub)
-    // const [username, setUsername] = useState('');
-    
+    const {username} = useSelector(selectGithub);    
     return (
         <div 
             className='container h-full grid place-items-center mx-auto xl:max-w-container-xl' 

@@ -5,6 +5,8 @@ export interface GithubRepo {
     html_url: string
     stargazers_count: number
     updated_at: string
+    language: string | null;
+    languages_url: string;
   }
   
   export interface SearchParams {

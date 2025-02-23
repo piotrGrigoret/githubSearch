@@ -9,6 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { GithubRepo } from '@/types/github';
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 interface RepoCardProps {
     repo: GithubRepo;
@@ -18,40 +19,52 @@ export const RepoCard = ({ repo }: RepoCardProps) => {
 
     const formatDate = (dateString: string) => {
 
-        return new Date(dateString).toLocaleDateString('ru-RU', {
+        return new Date(dateString).toLocaleDateString('en-EN', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
        });
     };
     return (
-        <Card className="w-[350px]">
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle>
-                <a
-                href={repo.html_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline"
-                >
+                    <h2 className="text-primary text-left text-3xl">
                         {repo.name}
-                </a>
+                    </h2>
+                   
                 </CardTitle>
-                <CardDescription>
-                    {repo.description && <p className="mt-2 text-gray-600">{repo.description}</p>}    
+                <CardDescription className='h-6 truncate '>
+                    <p className='text-left'>
+                    {repo.description && <p className="mt-2 ">{repo.description}</p>}
+                    </p>
                 </CardDescription>
             </CardHeader>
             <CardContent>
+                <div className='flex gap-4'>
+                   {repo.language && (
+                        <span className="flex items-center gap-1">
+                            <span className="w-3 h-3 rounded-full bg-gray-400 "></span>
+                            {repo.language}
+                        </span>
+                    )}
+                    <div className='text-muted-foreground text-sm flex items-center'>Updated: {formatDate(repo.updated_at)}</div>
+                </div>    
+            </CardContent>
+            <CardFooter className="flex justify-between">
                 <span className="flex items-center">
                     ⭐ {repo.stargazers_count}
                 </span>
-                <span>
-                    Обновлено: {formatDate(repo.updated_at)}
-                </span>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-                <Button variant="outline">Cancel</Button>
-                <Button>Deploy</Button>
+               
+               <a   
+                href={repo.html_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                > 
+                    <Button variant='link' className='flex items-start'>
+                    <SquareArrowOutUpRight /><div>GitHub</div>
+                    </Button>
+               </a>
             </CardFooter>
         </Card>
     )

@@ -18,7 +18,6 @@ const githubSlice = createSlice({
     initialState,
     reducers:{
       setUsername: (state, action: PayloadAction<string>) => {
-        // При изменении username сбрасываем страницу
         state.username = action.payload;
         state.page = 1;
       },

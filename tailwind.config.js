@@ -22,11 +22,17 @@ export default {
 			'container-md': '800px',
 			'container-lg': '1100px',
 			'container-xl': '1920px',
-		  },
+			'87': '21.875rem',
+		  
+		},
 		  width: {
 			'112': '28rem', 
 			'128': '32rem', 
-			'144': '36rem', 
+        	'77': '19.375rem', // ~310px
+        	'78': '19.6875rem',
+			'87': '21.875rem', // ~350px
+			'144': '36rem',
+
 		  },
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -57,7 +63,7 @@ export default {
   				foreground: 'hsl(var(--muted-foreground))'
   			},
   			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
+  				DEFAULT: 'hsl(var(--accent-hover))',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
   			destructive: {
@@ -79,4 +85,5 @@ export default {
   	}
   },
   plugins: [require("tailwindcss-animate")],
+
 }

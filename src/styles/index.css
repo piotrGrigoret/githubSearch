@@ -16,14 +16,17 @@
   --radius: 0.5rem;
   --background: 0, 2%, 13%;
   --foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
+  --muted: 240 3.7% 22.9%;
   --muted-foreground: 240 5% 64.9%;
   --border: 240 3.7% 45.9%;
   --borderFocus: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
   --ring: 240 4.9% 83.9%;
   --primary-color: hsl(178, 100%, 41%);
-
+  --accent: 12 91% 59%; 
+  --accent-hover: 12 30% 90%;
+  --accent-foreground: 0 0% 100%;
+  
   font-family: 'YanoneKaffeesatz';
   line-height: 1.5;
   font-weight: 400;
@@ -42,7 +45,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  width: 100vw;
+  width: 98vw;
   height: 100vh;
 }
 

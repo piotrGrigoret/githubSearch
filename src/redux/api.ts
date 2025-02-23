@@ -21,13 +21,12 @@ export const githubApi = createApi({
       if (response.status === 404) {
         throw { 
           status: 404, 
-          data: { message: 'Пользователь не найден' } 
+          data: { message: 'User not found' } 
         };
       }
       if (response.status === 403) {
         throw { 
           status: 403, 
-          data: { message: 'Превышен лимит запросов к API (60 в час)' } 
         };
       }
       return response.status === 200;
@@ -45,24 +44,32 @@ export const githubApi = createApi({
         }
       }),
 
-      
       serializeQueryArgs: ({ queryArgs }) => {
-        return queryArgs.username;
+        // Кэшируем по username и странице
+        return `${queryArgs.username}-${queryArgs.page}`;
       },
-
-      // Объединяем результаты для бесконечной прокрутки
-      merge: (currentCache, newItems) => {
-        if (currentCache) {
-          return [...currentCache, ...newItems];
+      merge: (currentCache, newItems, { arg: { page } }) => {
+        // Если это первая страница, заменяем кэш
+        if (page === 1) {
+            return newItems;
         }
-        return newItems;
+        // Иначе добавляем новые элементы
+        return [...currentCache, ...newItems];
       },
-
+        // Обновляем логику forceRefetch
       forceRefetch: ({ currentArg, previousArg }) => {
-        return (
-          currentArg?.username !== previousArg?.username ||
-          currentArg?.page !== previousArg?.page
-        );
+          return (
+              currentArg?.username !== previousArg?.username ||
+              currentArg?.page !== previousArg?.page
+          );
+      },
+      transformResponse: (response: GithubRepo[], meta, arg) => {
+        // Если это новый поиск (страница 1), возвращаем только новые данные
+        if (arg.page === 1) {
+            return response;
+        }
+        // Иначе возвращаем данные как есть
+        return response;
       },
     }),
   }),
