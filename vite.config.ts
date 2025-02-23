@@ -24,13 +24,13 @@ export default defineConfig({
     //   },
     // }),
   ],
-  build: {
-    outDir: 'build',
-    emptyOutDir: true,
-    rollupOptions: {
-      plugins: [],
-    },
-  },
+  // build: {
+  //   outDir: 'build',
+  //   emptyOutDir: true,
+  //   rollupOptions: {
+  //     plugins: [],
+  //   },
+  // },
   css: {
     postcss: './postcss.config.js',
   },
