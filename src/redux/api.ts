@@ -1,25 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { GithubRepo, SearchParams } from '../types/github';
 
-
+const BASE_URL = import.meta.env.VITE_GITHUB_API_URL || 'https://api.github.com';
+const TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export const githubApi = createApi({
-  // Уникальное имя для reducer'а
   reducerPath: 'githubApi',
   
-  // Настраиваем базовый URL для всех запросов
   baseQuery: fetchBaseQuery({ 
     baseUrl: 'https://api.github.com/',
     prepareHeaders: (headers) => {
-        if (GITHUB_TOKEN) {
-          headers.set('Authorization', `Bearer ${GITHUB_TOKEN}`);
+        if (BASE_URL) {
+          headers.set('Authorization', `Bearer ${TOKEN}`);
         }
         headers.set('Accept', 'application/vnd.github.v3+json');
         return headers;
     },
-    // Добавляем обработку ошибок
     validateStatus: (response) => {
-      // Проверяем статус ответа
 
       if (response.status === 404) {
         throw { 
@@ -37,39 +34,32 @@ export const githubApi = createApi({
     }
   }),
 
-  // Определяем endpoints (методы API)
   endpoints: (builder) => ({
-    // Метод получения репозиториев
     getUserRepos: builder.query<GithubRepo[], SearchParams>({
-      // Формируем URL запроса
       query: ({ username, page, per_page }) => ({
         url: `users/${username}/repos`,
         params: {
           page,
           per_page,
-          sort: 'updated' // Сортируем по дате обновления
+          sort: 'updated'
         }
       }),
 
-      // Как кэшировать результаты
+      
       serializeQueryArgs: ({ queryArgs }) => {
-        // Кэшируем по username
         return queryArgs.username;
       },
 
       // Объединяем результаты для бесконечной прокрутки
       merge: (currentCache, newItems) => {
         if (currentCache) {
-          // Добавляем новые элементы к существующим
           return [...currentCache, ...newItems];
         }
         return newItems;
       },
 
-      // Когда нужно перезапрашивать данные
       forceRefetch: ({ currentArg, previousArg }) => {
         return (
-          // Перезапрашиваем если изменился username или номер страницы
           currentArg?.username !== previousArg?.username ||
           currentArg?.page !== previousArg?.page
         );
@@ -78,5 +68,4 @@ export const githubApi = createApi({
   }),
 });
 
-// Экспортируем хук для использования в компонентах
 export const { useGetUserReposQuery } = githubApi;

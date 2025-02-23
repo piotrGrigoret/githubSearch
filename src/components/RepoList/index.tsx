@@ -14,29 +14,37 @@ export const RepoList = ({ username }: RepoListProps) => {
         rootMargin: '100px'
     });
 
-    const {
-        data: repos,
-        isLoading,
-        isFetching,
-        error
-      } = useGetUserReposQuery(
+    const { data: repos, isLoading, isFetching, error} = useGetUserReposQuery(
         { username, page, per_page: 20 },
-        { skip: !username }
+        { 
+            skip: !username,
+            refetchOnMountOrArgChange: true
+         }
     );
-
-    // Эффект для загрузки следующей страницы
+    const hasMore = repos?.length === 20; 
     useEffect(() => {
-        if (inView && !isLoading && !isFetching && repos?.length) {
+        if (inView && !isLoading && !isFetching && repos?.length && hasMore) {
         setPage((prev) => prev + 1);
         }
     }, [inView, isLoading, isFetching, repos?.length]);
 
-        // Если username пустой, ничего не показываем
     if (!username) {
-        return <div>Input username to view their repositories</div>;
+
+        return (
+            <div>
+                <div className='bg-white rounded'>
+                    <DotLottieReact
+                        className='animation max-w-64 mx-auto'
+                        src='/lottie/input.lottie'
+                        loop
+                        autoplay
+                    />
+                </div>
+                <div className='pt-3'>Enter a username to view repositories.</div>
+            </div>
+            )
     }
 
-        // Показываем индикатор первичной загрузки
     if (isLoading && page === 1) {
         return (
             <DotLottieReact
@@ -45,48 +53,69 @@ export const RepoList = ({ username }: RepoListProps) => {
                 loop
                 autoplay
             />
-
         );
     }
 
 
-        // Показываем ошибку
     if (error) {
+        console.log(error);
         return (
         <div className="text-center py-8">
-            <div className="text-red-500 bg-red-50 p-4 rounded-lg">
-            {error instanceof Error 
-                ? error.message 
-                : 'Произошла ошибка при загрузке репозиториев'}
+            <div className="text-red-500 p-4 rounded-lg">
+                <DotLottieReact
+                    className='animation max-w-64 mx-auto'
+                    src='/lottie/networkerror.lottie'
+                    loop
+                    autoplay
+                />
+                    
+                {error instanceof Error 
+                    ? error.message 
+                    : 'An error occurred while loading repositories.'
+                }
             </div>
         </div>
         );
     }
 
-        // Если репозитории не найдены
     if (!repos?.length) {
         return (
         <div className="text-center py-8 text-gray-500">
-            Репозитории не найдены
+            <DotLottieReact
+                    className='animation max-w-64 mx-auto'
+                    src='/lottie/notFound.lottie'
+                    loop
+                    autoplay
+                />
+            Repositories not found.
         </div>
         );
     }
     return (
         <div className="grid grid-cols-1 gap-4 pt-10 sm:grid-cols-2 lg:grid-cols-3">
 
-            {/* Список репозиториев */}
             {repos.map(repo => (
                 <RepoCard key={repo.id} repo={repo} />
             ))}
             
             {/* Индикатор загрузки следующей страницы */}
-            {isFetching && page > 1 && (
+            {isFetching && page > 1 && hasMore && (
                 <div className="text-center py-4">
-                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto" />
+                    <DotLottieReact
+                        className='animation max-w-64 mx-auto'
+                        src='/lottie/loadGitHub.lottie'
+                        loop
+                        autoplay
+                    />
+                </div>
+            )}
+
+            {!hasMore && repos?.length > 0 && (
+                <div className="col-span-full text-center py-4 text-gray-500">
+                    Все репозитории загружены
                 </div>
             )}
             
-            {/* Элемент-триггер для бесконечной прокрутки */}
             <div ref={loadMoreRef} />
         </div>
     )
