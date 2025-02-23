@@ -25,9 +25,10 @@
 ##### `npm i`
 ##### `npm run dev`
 
+🚀✅ THIS APPLICATION IS AVAILABLE ONLINE AT THIS ADDRESS: https://githubsearch-orh8.onrender.com 
+ 
 ⚠️ You need to create your own access token to run and properly operate the application locally.
 To do this, generate a token in your GitHub settings, then create a .env file in the root folder following the example in .env.example, and insert it into the VITE_GITHUB_TOKEN variable.
-
 ___
 
 ### Description:
