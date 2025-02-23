@@ -21,7 +21,7 @@
 
 ### Instalation:
 
-##### `git clone [https://github.com/piotrGrigoret/Semminars.git](https://github.com/piotrGrigoret/githubSearch)`
+##### `git clone https://github.com/piotrGrigoret/githubSearch`
 ##### `npm i`
 ##### `npm run dev`
 
@@ -32,18 +32,17 @@ ___
 
 ### Description:
 
-[ru]Приложение на **React** предназначено для поиска репозиториев пользователей **GitHub** по их имени.
 
-## Основные функции:
+[ru] Приложение на React предназначено для поиска репозиториев пользователей **GitHub** по их имени.
+#### Основные функции:
 - **Поиск репозиториев:** Пользователь вводит имя пользователя GitHub в строку поиска.
 - **Запрос к GitHub API:** Приложение отправляет запрос к GitHub API и получает список репозиториев.
 - **Отображение результатов:** Найденные репозитории выводятся в удобном формате с названием, описанием и ссылкой на репозиторий.
 - **Обработка ошибок:** Если пользователь не найден или у него нет репозиториев, выводится соответствующее уведомление.
 - **Современный интерфейс:** Стилизация выполнена с использованием **Tailwind CSS** и **shadcn/ui**.
 
-[eng]This **React** application allows users to search for **GitHub repositories** by username.
-
-## Main Features:
+[eng] This React application allows users to search for **GitHub repositories** by username.
+#### Main Features:
 - **Repository Search:** The user enters a GitHub username in the search bar.
 - **GitHub API Request:** The application sends a request to the GitHub API to retrieve the list of repositories.
 - **Result Display:** The retrieved repositories are displayed in a user-friendly format, including the repository name, description, and link.
